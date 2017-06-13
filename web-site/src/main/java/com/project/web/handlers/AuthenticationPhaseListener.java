@@ -11,7 +11,7 @@ import javax.faces.event.PhaseListener;
 public class AuthenticationPhaseListener implements PhaseListener {
 
     private static final long serialVersionUID = 1L;
-   
+
     @Override
     public void afterPhase(PhaseEvent event) {
     }
@@ -22,7 +22,6 @@ public class AuthenticationPhaseListener implements PhaseListener {
         ExternalContext ex = context.getExternalContext();
         try {
 
-
             String localeCode = (String) ex.getSessionMap().get("localeCode");
 
             if (localeCode != null) {
@@ -31,8 +30,8 @@ public class AuthenticationPhaseListener implements PhaseListener {
             }
 
         } catch (Exception ex1) {
-         
-           // ex1.printStackTrace();
+
+            // ex1.printStackTrace();
         }
     }
 
@@ -40,11 +39,9 @@ public class AuthenticationPhaseListener implements PhaseListener {
         try {
             facesContext.getExternalContext().redirect(url);
         } catch (IOException e) {
-           // throw new FacesException("Cannot redirect to " + url + " due to IO exception.", e);
+            // throw new FacesException("Cannot redirect to " + url + " due to IO exception.", e);
         }
     }
-
-   
 
     @Override
     public PhaseId getPhaseId() {
