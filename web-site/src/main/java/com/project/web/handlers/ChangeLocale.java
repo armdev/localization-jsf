@@ -1,24 +1,36 @@
 package com.project.web.handlers;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
+
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
+import lombok.Getter;
+import lombok.Setter;
 
-@ManagedBean(name = "changeLocale")
+@Named
 @RequestScoped
-public class ChangeLocale {
+public class ChangeLocale implements Serializable {
 
     private final FacesContext context;
     private final ExternalContext ex;
 
+    @Setter
+    @Getter
     private String languageCode;
+    @Setter
+    @Getter
     private String english = "en";
+    @Setter
+    @Getter
     private String russian = "ru";
+    @Setter
+    @Getter
     private String armenian = "hy";
 
     public ChangeLocale() {
@@ -32,12 +44,9 @@ public class ChangeLocale {
             context.getViewRoot().setLocale(new Locale(armenian));
             ex.getSessionMap().put("localeCode", armenian);
             String viewId = context.getViewRoot().getViewId();
-            // System.out.println("viewId " + viewId);
             redirectAfterChangeLocale();
         } catch (Exception e) {
-            e.printStackTrace();
         }
-
     }
 
     public void changeLocaleToEn() {
@@ -45,10 +54,8 @@ public class ChangeLocale {
             context.getViewRoot().setLocale(new Locale(english));
             ex.getSessionMap().put("localeCode", english);
             String viewId = context.getViewRoot().getViewId();
-            // System.out.println("viewId " + viewId);
             redirectAfterChangeLocale();
         } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }
@@ -58,54 +65,18 @@ public class ChangeLocale {
             ex.getSessionMap().put("localeCode", russian);
             context.getViewRoot().setLocale(new Locale(russian));
             String viewId = context.getViewRoot().getViewId();
-            //System.out.println("viewId " + viewId);
             redirectAfterChangeLocale();
         } catch (Exception e) {
-            e.printStackTrace();
-        }
 
+        }
     }
 
     public void redirectAfterChangeLocale() {
-
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
         } catch (IOException ex) {
             Logger.getLogger(ChangeLocale.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    }
-
-    public String getLanguageCode() {
-        return languageCode;
-    }
-
-    public void setLanguageCode(String languageCode) {
-        this.languageCode = languageCode;
-    }
-
-    public String getEnglish() {
-        return english;
-    }
-
-    public void setEnglish(String english) {
-        this.english = english;
-    }
-
-    public String getRussian() {
-        return russian;
-    }
-
-    public void setRussian(String russian) {
-        this.russian = russian;
-    }
-
-    public String getArmenian() {
-        return armenian;
-    }
-
-    public void setArmenian(String armenian) {
-        this.armenian = armenian;
     }
 
 }
