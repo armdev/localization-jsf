@@ -14,7 +14,7 @@ import javax.faces.context.ExceptionHandlerFactory;
  */
 public class ViewExpiredExceptionExceptionHandlerFactory extends ExceptionHandlerFactory {
  
-    private ExceptionHandlerFactory parent;
+    private final ExceptionHandlerFactory parent;
  
     public ViewExpiredExceptionExceptionHandlerFactory(ExceptionHandlerFactory parent) {
         this.parent = parent;

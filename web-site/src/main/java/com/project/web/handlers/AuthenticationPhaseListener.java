@@ -1,12 +1,7 @@
 package com.project.web.handlers;
 
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.ResourceBundle;
-import javax.faces.FacesException;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
